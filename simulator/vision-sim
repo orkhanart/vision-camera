@@ -1,0 +1,6 @@
+#!/bin/bash
+# VISION AI Camera Simulator launcher
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+PYTHONPATH=src python3 -m vision.app "$@"

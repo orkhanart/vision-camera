@@ -1,0 +1,56 @@
+# VISION Simulator Configuration
+# ================================
+
+# Camera settings
+camera:
+  device_id: 0
+  target_fps: 30
+  output_width: 1920
+  output_height: 1440  # 4:3 aspect ratio
+
+# Display simulation (matches VISION 3" display)
+display:
+  width: 1080
+  height: 810
+  brightness_nits: 1000
+  show_grid: true
+  show_histogram: false
+  show_focus_peaking: false
+
+# Hardware simulation profile
+hardware:
+  profile: "jetson_orin_64gb"
+  power_mode: "balanced"  # max_performance, balanced, power_save
+  enforce_limits: true
+
+  # Memory budget (GB)
+  max_model_memory: 32.0
+
+  # Thermal simulation
+  ambient_temp_c: 25.0
+  enable_throttling: true
+
+# AI inference settings
+inference:
+  default_model: "sdxl-turbo"
+  default_style: "cinematic"
+
+  # Default parameters
+  default_steps: 4
+  default_strength: 0.75
+  default_guidance: 0.0
+
+  # Performance
+  enable_attention_slicing: true
+  enable_vae_tiling: false
+
+# Models to preload on startup (optional)
+preload_models: []
+  # - sdxl-turbo
+  # - sd-1.5
+
+# Output settings
+output:
+  directory: "./output"
+  format: "png"
+  include_metadata: true

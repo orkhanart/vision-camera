@@ -1,0 +1,78 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "vision-simulator"
+version = "0.1.0"
+description = "VISION AI Camera Simulator - Desktop development environment"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+    { name = "VISION Team" }
+]
+
+dependencies = [
+    # UI Framework
+    "PySide6>=6.6.0",
+
+    # Camera & Image Processing
+    "opencv-python>=4.8.0",
+    "numpy>=1.24.0",
+    "Pillow>=10.0.0",
+
+    # AI / Deep Learning
+    "torch>=2.1.0",
+    "torchvision>=0.16.0",
+    "diffusers>=0.25.0",
+    "transformers>=4.36.0",
+    "accelerate>=0.25.0",
+    "safetensors>=0.4.0",
+
+    # Performance & Profiling
+    "psutil>=5.9.0",
+    "GPUtil>=1.4.0",
+
+    # Configuration
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.1.0",
+    "pyyaml>=6.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-qt>=4.2.0",
+    "ruff>=0.1.0",
+    "mypy>=1.7.0",
+]
+
+# For Apple Silicon optimized inference
+mps = [
+    "torch>=2.1.0",
+]
+
+# For NVIDIA GPU inference
+cuda = [
+    "torch>=2.1.0",
+]
+
+[project.scripts]
+vision-sim = "vision.app:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vision"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.ruff.isort]
+known-first-party = ["vision"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_return_any = true
